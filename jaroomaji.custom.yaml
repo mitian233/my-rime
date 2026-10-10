@@ -1,0 +1,33 @@
+patch:
+  "engine/filters":
+    - lua_filter@jp_predictive_filter
+    - uniquifier
+  "key_binder/bindings/+":
+    # 平假名 / 片假名 / 半角极速转换快捷键
+    - { when: composing, accept: F6, send: F6 }
+    - { when: composing, accept: "Control+u", send: F6 }
+    - { when: composing, accept: F7, send: F7 }
+    - { when: composing, accept: "Control+i", send: F7 }
+    - { when: composing, accept: F8, send: F8 }
+    - { when: composing, accept: "Control+o", send: F8 }
+    - { when: composing, accept: F10, send: F10 }
+    - { when: composing, accept: "Control+p", send: F10 }
+
+    - { when: has_menu, accept: Tab, send: Down }
+    - { when: has_menu, accept: "Shift+Tab", send: Up }
+    - { when: has_menu, accept: ISO_Left_Tab, send: Up }
+
+    # 翻页快捷键
+    - { when: has_menu, accept: Up, send: Page_Up }
+    - { when: has_menu, accept: Down, send: Page_Down }
+    - { when: has_menu, accept: comma, send: Page_Up }
+    - { when: has_menu, accept: period, send: Page_Down }
+    - { when: has_menu, accept: bracketleft, send: Page_Up }
+    - { when: has_menu, accept: bracketright, send: Page_Down }
+    - { accept: "Control+comma", select: sbzr, when: always }
+    - { accept: "Control+period", select: jaroomaji, when: always }
+    - { accept: "Shift+BackSpace", send: Escape, when: composing }
+
+    # 日语长音修正
+    - { when: has_menu, accept: minus, send: minus }
+    - { when: has_menu, accept: underscore, send: underscore }

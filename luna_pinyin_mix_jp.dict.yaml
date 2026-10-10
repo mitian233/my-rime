@@ -1,0 +1,14 @@
+# Japanese lexicon for luna_pinyin_mix, excluding sbzr's short-code dictionary.
+---
+name: luna_pinyin_mix_jp
+version: "1.0"
+sort: by_weight
+use_preset_vocabulary: false
+import_tables:
+  - sbzr.chrome.extension/dicts.jp/jaroomaji.user
+  - sbzr.chrome.extension/dicts.jp/jaroomaji.kana_kigou
+  - sbzr.chrome.extension/dicts.jp/jaroomaji.mozc
+  - sbzr.chrome.extension/dicts.jp/jaroomaji.jmdict
+  - sbzr.chrome.extension/dicts.jp/jaroomaji.mozcemoji
+  - sbzr.chrome.extension/dicts.jp/jaroomaji.kanjidic2
+...

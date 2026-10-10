@@ -1,0 +1,7 @@
+patch:
+  schema_list/+:
+    - schema: luna_pinyin_mix
+    - schema: sbzr_mix
+    - schema: sbzr
+    - schema: pinyin_jap
+    - schema: jap_poly_nano

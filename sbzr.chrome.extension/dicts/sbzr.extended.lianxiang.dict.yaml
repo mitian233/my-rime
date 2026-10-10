@@ -1,0 +1,16 @@
+# Rime dictionary
+# encoding: utf-8
+#
+# Extended associative phrase dictionary.
+#
+---
+name: sbzr.chrome.extension/dicts/sbzr.extended.lianxiang
+version: "1.0"
+sort: by_weight
+use_preset_vocabulary: false
+columns:
+  - text
+  - code
+  - weight
+...
+

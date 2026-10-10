@@ -1,0 +1,14 @@
+# Build-only dependency; intentionally absent from the F4 schema list.
+__include: jaroomaji.schema:/
+schema:
+  schema_id: luna_pinyin_mix_jp
+  name: "全拼混输·日语词库依赖"
+  version: "1.0"
+translator:
+  dictionary: luna_pinyin_mix_jp
+  prism: luna_pinyin_mix_jp
+  user_dict: luna_pinyin_mix_jp
+__patch:
+  speller/algebra/+:
+    - "derive/^nn$/n/"
+    - "derive/^NN$/N/"

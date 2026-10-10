@@ -1,0 +1,97 @@
+# Independent Chinese full-pinyin / Japanese romaji / English scheme.
+schema:
+  schema_id: luna_pinyin_mix
+  name: "朙月拼音·中日英混输"
+  version: "1.0"
+  dependencies:
+    - luna_pinyin
+    - luna_pinyin_mix_jp
+    - easy_en
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [混输, 西文]
+  - name: jp_priority
+    reset: 0
+    states: [中文优先, 日语优先]
+  - name: zh_simp
+    reset: 1
+    states: [中文繁体, 中文简体]
+  - name: ascii_punct
+    states: [中文标点, 西文标点]
+
+menu:
+  page_size: 9
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - lua_translator@*luna_pinyin_mix
+  filters:
+    - uniquifier
+
+speller:
+  alphabet: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-
+  delimiter: " '"
+
+zh_mix:
+  dictionary: luna_pinyin
+  prism: luna_pinyin
+  user_dict: luna_pinyin_mix_zh
+  enable_user_dict: true
+  enable_sentence: true
+  enable_completion: true
+  preedit_format:
+    __include: luna_pinyin.schema:/translator/preedit_format
+
+jp_mix:
+  dictionary: luna_pinyin_mix_jp
+  prism: luna_pinyin_mix_jp
+  user_dict: luna_pinyin_mix_jp
+  db_class: tabledb
+  enable_user_dict: true
+  enable_sentence: false
+  enable_completion: false
+  preedit_format:
+    __include: jaroomaji.schema:/translator/preedit_format
+
+en_mix:
+  dictionary: easy_en
+  user_dict: luna_pinyin_mix_en
+  db_class: tabledb
+  enable_user_dict: true
+  enable_sentence: false
+  enable_completion: true
+
+punctuator:
+  import_preset: symbols
+
+key_binder:
+  import_preset: default
+  bindings:
+    - { when: always, accept: "Control+Shift+j", toggle: jp_priority }
+    - { when: always, accept: "Control+Shift+J", toggle: jp_priority }
+    - { when: always, accept: "Control+Shift+s", toggle: zh_simp }
+    - { when: always, accept: "Control+Shift+S", toggle: zh_simp }
+    - { when: has_menu, accept: minus, send: Page_Up }
+    - { when: has_menu, accept: equal, send: Page_Down }
+
+recognizer:
+  patterns:
+    punct: "^/([0-9]0?|[A-Za-z]+)$"

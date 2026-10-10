@@ -1,0 +1,52 @@
+# Rime 重新部署生成的缓存与设备状态
+/build/
+*.userdb/
+*.userdb.txt
+/installation.yaml
+/user.yaml
+/sync/
+/trash/
+/dynamic_freq.local.txt
+# tabledb 用户学习数据：由 Rime 自动创建，不是静态词库源文件
+/sbzr.txt
+/sbzr_mix.txt
+/jaroomaji.txt
+/easy_en.txt
+/pinyin.txt
+/luna_pinyin_mix_en.txt
+/luna_pinyin_mix_jp.txt
+
+# 可从固定上游版本恢复的日语大词库（运行 scripts/prepare.py）
+/sbzr.chrome.extension/dicts.jp/jaroomaji.kana_kigou.dict.yaml
+/sbzr.chrome.extension/dicts.jp/jaroomaji.mozc.dict.yaml
+/sbzr.chrome.extension/dicts.jp/jaroomaji.jmdict.dict.yaml
+/sbzr.chrome.extension/dicts.jp/jaroomaji.mozcemoji.dict.yaml
+/sbzr.chrome.extension/dicts.jp/jaroomaji.kanjidic2.dict.yaml
+# jaroomaji.user 和 abbrev 可能包含自定义内容，必须保留。
+
+# 未被当前方案引用的词库生成产物
+/sbzr.chrome.extension/dicts/sbzr.rimeice.3字.dict.yaml
+/sbzr.chrome.extension/dicts/sbzr.rimeice.4字.dict.yaml
+/sbzr.chrome.extension/dicts/sbzr.rimeice.5字+.dict.yaml
+/lua/sbzr_dict_data.lua
+# 生成报告、回滚记录：不是部署输入
+/sbzr.chrome.extension/dicts/*.manifest.json
+/sbzr.chrome.extension/dicts/*.rollback.json
+/sbzr.chrome.extension/dicts/*.report.md
+
+# 准备脚本、编辑器和操作系统的临时文件
+__pycache__/
+*.py[cod]
+.venv/
+.cache/
+.DS_Store
+._*
+Thumbs.db
+*.log
+*.tmp
+*.part
+*.bak
+*~
+*.swp
+.idea/
+.vscode/
