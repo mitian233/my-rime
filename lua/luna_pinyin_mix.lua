@@ -30,7 +30,6 @@ function M.func(input, seg, env)
   local priority = context:get_option("jp_priority") and "jp" or "zh"
   local secondary = priority == "zh" and "jp" or "zh"
   local order = {priority, secondary, "en"}
-  local labels = {zh = "〔中〕", jp = "〔日〕", en = "〔英〕"}
   local simplify = context:get_option("zh_simp")
 
   -- Reserve visible slots for each available language. Native ordering within
@@ -52,7 +51,11 @@ function M.func(input, seg, env)
         if lang == "zh" and simplify then
           text = env.t2s:convert(text)
         end
-        yield(ShadowCandidate(cand, "luna_mix_" .. lang, text, labels[lang], false))
+        -- Display the typed spelling rather than the translator's formatted
+        -- pinyin/kana. Partial candidates cover only their own input range;
+        -- Rime appends the remaining raw input when composing the preedit.
+        cand:get_genuine().preedit = input:sub(1, cand._end - seg.start)
+        yield(ShadowCandidate(cand, "luna_mix_" .. lang, text, "", false))
         emitted = true
       end
     end
